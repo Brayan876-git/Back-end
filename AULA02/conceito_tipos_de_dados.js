@@ -31,3 +31,16 @@ console.log(saudacao); //Exibe "Olá, Jarvis"
 
 let soma = 10 + 5;
 console.log(soma);
+
+// Boolean (Verdadeiro ou falso)
+// Um boolean pode ter apenas dois valores: true (verdadeiro) ou false (falso)
+
+let maiorDeIdade = true;
+let menorDeIdade = false;
+
+console.log(maiorDeIdade); // Exibe true
+console.log(menorDeIdade); // Exibe false
+
+let idade = 20;
+let podeDirigir = idade >= 18;
+console.log(podeDirigir);
