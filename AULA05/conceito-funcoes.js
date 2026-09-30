@@ -31,3 +31,35 @@ function somar(a, b){
 }
 
 console.log(somar(2,3))
+
+// 2 - Converter real para dólar
+function realParaDolar(valorReal, cotacao){
+    return valorReal / cotacao;
+}
+
+console.log(realParaDolar(10,5.20).toFixed(2))
+
+// 3 - Converter dólar para real
+function dolarParaReal(valorDolar, cotacao){
+    return valorDolar * cotacao;
+}
+
+console.log(realParaDolar(5,5.20).toFixed(2))
+
+// 4 - Aumento de salário (Você merece 25% de aumento)
+function aumentoDeSalario(salario){
+    return salario + (salario * 0.25);
+}
+
+console.log(aumentoDeSalario(2000));
+
+// Verifique se é par ou impar?
+function verificaImparOuPar(valor){
+    if (valor % 2 === 0){
+        return("seu numero é par")
+    }
+    else{
+        return("seu numero é impar")
+    }
+}
+console.log(verificaImparOuPar(3))
