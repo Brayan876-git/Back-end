@@ -38,7 +38,7 @@ app.use(cors());
 // http://localhost:3000/fotos/husky/1.jpg
 
 app.use(
-    "/fotos"
+    "/fotos",
     express.static(
         path.join(__dirname, "data/fotos") //caminho real da pasta do servidor
     )
@@ -74,10 +74,10 @@ app.get("/api/cachorros/aleatorio", (req, res) => {
 // object.values pega os valores do objeto
 // flat transforma tudo em um único array
 const todasAsFotos = Object.values(cachorros).flat();
-})
+
 
 // Sorteia uma foto aleatória 
-const item = sortear(todasAsFotos)
+const item = sortear(todasAsFotos);
 
 // responder para o cliente em formato JSON
 res.json({
@@ -86,7 +86,7 @@ res.json({
     //URL da imagem que foi sorteada
     message: `http://localhost:${PORT}/fotos/${item}` 
 });
-
+});
 // ROTA 2 - Cachorro por raça
 // Exemplo de acesso:
 // http://localhost:3000/api/cachorros/husky
