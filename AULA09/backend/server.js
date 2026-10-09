@@ -60,3 +60,64 @@ function sortear(array) {
     // retorna o item sorteado 
     return array[i];
 }
+
+//====================================================
+// ROTAS DA API
+//====================================================
+
+// ROTA 1 - Cachorro aleatório 
+app.get("/api/cachorros/aleatorio", (req, res) => {
+// req - request(requisição) = é o pedido que chega ao servidor, por exemplo, o navegador pede uma foto de cachorro.
+// res - response(resposta) = é o que o servidor envia de volta, por exemplo, o endereço da foto do cachorro.
+
+// pegar todas as fotos de todas as raças
+// object.values pega os valores do objeto
+// flat transforma tudo em um único array
+const todasAsFotos = Object.values(cachorros).flat();
+})
+
+// Sorteia uma foto aleatória 
+const item = sortear(todasAsFotos)
+
+// responder para o cliente em formato JSON
+res.json({
+    // Status da resposta 
+    status:"success",
+    //URL da imagem que foi sorteada
+    message: `http://localhost:${PORT}/fotos/${item}` 
+});
+
+// ROTA 2 - Cachorro por raça
+// Exemplo de acesso:
+// http://localhost:3000/api/cachorros/husky
+
+app.get("/api/cachorros/:raca", (req, res) => {
+
+    // Pega o parâmetros da URL (EX: Husky)
+    const raca = req.params.raca.toLocaleLowerCase();
+    // params = contém os parâmetros definidos na URL da rota
+    //.raca = acessa o parâmetro chamado raca.
+    //.toLowerCase() = Transforma todas as letras em minúsculas
+    if (!cachorros[raca]){
+    //Cachorros[raca]: procurar a raça dentro do objeto *cachorros*
+    //!: significa não: Nesse caso, verifica se a raça não existe ou se seu valor é falso.
+     // se não exisitir, retorna erro 404
+      res.status(404).json({
+         status: "error",
+         message: `Raça "${raca}" não encontrada`
+     })
+
+     // Encerra a execução da rota
+     return;
+    }
+
+    // sorteia uma foto da raça solicitada
+    const item = sortear(cachorros[raca]);
+
+    // retorna a resposta en JSON
+    res.json({
+        status: "success",
+        message: `http://localhost:${PORT}/fotos/${item}`
+    });
+
+});
