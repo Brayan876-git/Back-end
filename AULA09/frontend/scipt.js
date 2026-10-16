@@ -109,3 +109,57 @@ async function buscaCachorro(url){
 //========================================
 // AÇÕES
 //========================================
+
+//função que busca o cachorro aleatório
+function cachorroAleatorio(){
+
+  //chamar função principal
+  //passando a rota /aleatorio da API
+  buscarCachorro(´´${API}/aleatorio´);
+}
+
+//função que busca cachorro por raça
+function buscarPorRaca(){
+  //pega o texto digitado no Input
+  //Trim ele remove os espaços em branco {trim}()} do inicio e do fim do texto
+  const raca = breedInput.value.trim().toLowerCase();
+
+  //verificar se o usuario digitou algo
+  if (!raca) {
+    // se nao digitoum mostra alerta
+    alert ("digite uma raça!")
+    // interrompe a função
+    return;
+  }
+
+  //chamar a API passando a raca na URL
+  //exemplo: /api/cachorros/husky
+  buscarCachorro(´${API}/${raca}´)
+}
+
+//=======================================
+// EVENTOS
+//=======================================
+
+//quando clicar no botão "aleatorio"
+randomBtn.addEventListener("click",cachorroAleatorio);
+
+//quando clicar no botão "buscar"
+searchBtn.addEventListener("click", buscarPorRaca);
+
+//quando clicar na imagem do cachorro
+//carrega outro cachorro aleatorio
+dogImage.addEventListener("click", cachorroAleatorio);
+
+//quando o usuario apertar o ENTER no input
+breedInput.addEventListener("keypress", (event) =>{
+    // verifica se a tecla pressionada foi enter
+    if (event.key === "Enter"){
+      //executa a busca por raça
+      buscarPorRaca();
+    }
+})
+
+// Carrega ao abrir a página
+
+cachorroAleatorio();
